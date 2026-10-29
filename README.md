@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Flag Game — Desafio das Bandeiras
 
 Aplicativo Flutter para testar conhecimentos sobre bandeiras de países, com partidas por continente ou em modo aleatório.
@@ -40,3 +41,6 @@ O código-fonte deve ser enviado ao GitHub. A atividade também solicita um víd
 ## Banco de dados de bandeiras
 
 Os dados dos países ficam no arquivo local `assets/paises.json`, carregado pelo Flutter por meio de `rootBundle`. O arquivo contém nome, continente, URL da imagem da bandeira e emoji de fallback para cada país. As imagens são fornecidas pelo [FlagCDN](https://flagcdn.com/); é necessária conexão com a internet para carregar as imagens, mas o emoji é exibido caso a imagem não carregue.
+=======
+# Desenvolvimento-de-Aplicativo-Flag-Game
+>>>>>>> a9f0283a099b6e92da13a6c0e58e33f667c67009
