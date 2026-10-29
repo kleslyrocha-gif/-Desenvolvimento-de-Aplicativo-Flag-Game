@@ -34,10 +34,6 @@ Aplicativo Flutter para testar conhecimentos sobre bandeiras de países, com par
 - `shared_preferences` para armazenar recordes localmente.
 - Emojis de bandeiras e lista local de países organizada por continente.
 
-## Observações para a entrega
-O código-fonte deve ser enviado ao GitHub. A atividade também solicita um vídeo explicativo do funcionamento; esse vídeo precisa ser gravado e anexado/publicado separadamente.
-
-
 ## Banco de dados de bandeiras
 
 Os dados dos países ficam no arquivo local `assets/paises.json`, carregado pelo Flutter por meio de `rootBundle`. O arquivo contém nome, continente, URL da imagem da bandeira e emoji de fallback para cada país. As imagens são fornecidas pelo [FlagCDN](https://flagcdn.com/); é necessária conexão com a internet para carregar as imagens, mas o emoji é exibido caso a imagem não carregue.
