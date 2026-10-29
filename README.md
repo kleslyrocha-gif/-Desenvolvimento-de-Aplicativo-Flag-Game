@@ -41,4 +41,3 @@ O código-fonte deve ser enviado ao GitHub. A atividade também solicita um víd
 ## Banco de dados de bandeiras
 
 Os dados dos países ficam no arquivo local `assets/paises.json`, carregado pelo Flutter por meio de `rootBundle`. O arquivo contém nome, continente, URL da imagem da bandeira e emoji de fallback para cada país. As imagens são fornecidas pelo [FlagCDN](https://flagcdn.com/); é necessária conexão com a internet para carregar as imagens, mas o emoji é exibido caso a imagem não carregue.
-=======
