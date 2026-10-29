@@ -54,9 +54,10 @@ class TelaJogo extends StatefulWidget {
 
 class _TelaJogoState extends State<TelaJogo> {
   final Random _random = Random();
-
+  
   bool _carregando = true;
   String? _erroCarregamento;
+  String? _ultimoPaisNome;
   late List<Pais> _bancoDePaises;
   late List<Pais> _paisesDisponiveis;
   late List<Pais> _paisesRestantes;
@@ -128,20 +129,38 @@ Future<void> _carregarBancoDePaises() async {
 }
 
   void _novaPergunta() {
-  // Quando todos os países forem usados, começa uma nova rodada.
+  // Se todos os países já foram usados, inicia outra rodada.
   if (_paisesRestantes.isEmpty) {
     _paisesRestantes = List<Pais>.from(_paisesDisponiveis);
   }
 
-  // Embaralha os países que ainda não foram perguntados.
+  // Embaralha os países restantes.
   _paisesRestantes.shuffle(_random);
 
-  // Retira o país atual da lista para não repeti-lo nesta rodada.
+  // Evita repetir o país da pergunta anterior,
+  // inclusive quando uma nova rodada começa.
+  if (_paisesRestantes.length > 1 &&
+      _paisesRestantes.first.nome == _ultimoPaisNome) {
+    final indiceDiferente = _paisesRestantes.indexWhere(
+      (pais) => pais.nome != _ultimoPaisNome,
+    );
+
+    if (indiceDiferente > 0) {
+      final temporario = _paisesRestantes[0];
+      _paisesRestantes[0] = _paisesRestantes[indiceDiferente];
+      _paisesRestantes[indiceDiferente] = temporario;
+    }
+  }
+
+  // Seleciona e remove o próximo país.
   _paisAtual = _paisesRestantes.removeAt(0);
 
-  // Seleciona três países diferentes para serem alternativas erradas.
+  // Guarda o país atual para evitar repetição consecutiva.
+  _ultimoPaisNome = _paisAtual.nome;
+
+  // Cria três alternativas erradas diferentes.
   final outrasOpcoes = _paisesDisponiveis
-      .where((p) => p.nome != _paisAtual.nome)
+      .where((pais) => pais.nome != _paisAtual.nome)
       .toList()
     ..shuffle(_random);
 
@@ -154,8 +173,6 @@ Future<void> _carregarBancoDePaises() async {
   _acertou = null;
   _respostaEscolhida = null;
 }
-
-
   void _iniciarCronometro() {
     _cronometro = Timer.periodic(
       const Duration(seconds: 1),
